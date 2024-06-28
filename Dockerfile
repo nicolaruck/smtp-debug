@@ -1,7 +1,10 @@
 FROM php:apache
 
 # Update and install necessary extensions
-RUN apt-get update -y
+RUN apt-get update -y && \
+    apt-get install -y libzip-dev libxml2-dev libpng-dev && \
+    docker-php-ext-install mysqli zip xml gd
+
 
 # Enable Apache modules
 RUN a2enmod ssl && a2enmod rewrite
