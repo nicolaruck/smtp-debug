@@ -1,44 +1,57 @@
+
 # SMTP Debug Webserver
-# Überblick
+
 Dieses Projekt stellt ein Docker-Image zur Verfügung, das einen SMTP Debug Webserver basierend auf PHP und Apache bereitstellt. Mit diesem Webserver kann der SMTP-Versand getestet werden. Der Versand erfolgt mit Hilfe von PHPMailer.
 
-Eigenschaften
+### Eigenschaften
 - PHP und Apache: Basierend auf dem offiziellen PHP Apache Docker Image.
 - PHPMailer: Wird für den SMTP-Versand genutzt.
 - Docker: Einfacher Einsatz über Docker und Docker Compose.
 
-# Verwendung
-# Docker
-Um das Image direkt von DockerHub zu ziehen und zu verwenden, führen Sie den folgenden Befehl aus:
-docker pull nicolaruckdeschel/smtp-debug:latest
-
-# Docker Compose
-Mit dem bereitgestellten docker-compose.yml können Sie den SMTP Debug Webserver einfach starten. Erstellen Sie eine Datei docker-compose.yml mit folgendem Inhalt:
-
-version: '3'
-services:
-  smtp-debug:
-    image: nicolaruckdeschel/smtp-debug:latest
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./data:/var/www/html
-
-Starten Sie den Container mit:
-
-docker-compose up -d
-
-# Funktionen
+### Funktionen
 - SMTP Versand testen: Geben Sie die SMTP-Serverdaten, Absender- und Empfängerinformationen ein und testen Sie den Versand.
 - Debug-Informationen: Bei Versandproblemen können Debug-Informationen angezeigt und heruntergeladen werden.
 
-# Weboberfläche
+### Weboberfläche
 Nach dem Start des Containers ist die Weboberfläche unter http://localhost erreichbar. Dort können die SMTP-Daten eingegeben und der Versand getestet werden.
+## Demo
 
-# Kontakt
-Bei Fragen oder Problemen wenden Sie sich bitte an Nicola Ruckdeschel (https://github.com/nicolaruck).
+https://smtp.my-c.ch
 
-# Lizenz
-Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe die LICENSE Datei für Details.
+
+## Installation
+
+Um das Image direkt von DockerHub zu ziehen und zu verwenden, führen Sie den folgenden Befehl aus:
+```docker pull nicolaruckdeschel/smtp-debug:latest```
+
+Mit dem bereitgestellten docker-compose.yml können Sie den SMTP Debug Webserver einfach starten. Erstellen Sie eine Datei docker-compose.yml mit folgendem Inhalt:
+
+```bash
+  version: '1'
+  services:
+    smtp-debug:
+      image: nicolaruckdeschel/smtp-debug:latest
+      container_name: smtp-debug
+      volumes:
+        - type: volume
+          source: v-smtp-debug
+          target: /var/www/html
+          # volume:  # Optional: Konfiguration für den Volume, falls notwendig
+          #   nocopy: true  
+      ports:
+          - :80
+          - :443
+      restart: unless-stopped  
+      networks:
+        - n-smtp-debug
+    networks:
+      n-smtp-debug:
+        external: false  
+    volumes:
+      v-smtp-debug:
+```
+    
+## Authors
+
+- [@nicolaruck](https://github.com/nicolaruck)
 
