@@ -27,28 +27,28 @@ Um das Image direkt von DockerHub zu ziehen und zu verwenden, führen Sie den fo
 Mit dem bereitgestellten docker-compose.yml können Sie den SMTP Debug Webserver einfach starten. Erstellen Sie eine Datei docker-compose.yml mit folgendem Inhalt:
 
 ```bash
-  version: '1'
-  services:
-    smtp-debug:
-      image: nicolaruckdeschel/smtp-debug:latest
-      container_name: smtp-debug
-      volumes:
-        - type: volume
-          source: v-smtp-debug
-          target: /var/www/html
-          # volume:  # Optional: Konfiguration für den Volume, falls notwendig
-          #   nocopy: true  
-      ports:
-          - :80
-          - :443
-      restart: unless-stopped  
-      networks:
-        - n-smtp-debug
-    networks:
-      n-smtp-debug:
-        external: false  
+version: '1'
+services:
+  smtp-debug:
+    image: nicolaruckdeschel/smtp-debug:latest
+    container_name: smtp-debug
     volumes:
-      v-smtp-debug:
+      - type: volume
+        source: v-smtp-debug
+        target: /var/www/html
+        # volume:  # Optional: Konfiguration für den Volume, falls notwendig
+        #   nocopy: true  # Verhindert, dass Daten vom Container in den neuen Volume kopiert werden
+    ports:
+        - :80
+        - :443
+    restart: unless-stopped  # Stellt sicher, dass der Container automatisch neu startet, außer er wird manuell gestoppt
+    networks:
+      - n-smtp-debug
+networks:
+  n-smtp-debug:
+    external: false  # Verwendet ein externes Netzwerk, das außerhalb dieses Docker Compose-Files definiert ist
+volumes:
+  v-smtp-debug:
 ```
     
 ## Authors
