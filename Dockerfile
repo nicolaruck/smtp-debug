@@ -9,6 +9,9 @@ RUN a2enmod ssl && a2enmod rewrite
 # Copy PHP configuration file
 COPY ./php.ini /usr/local/etc/php/
 
+# Copy Apache configuration file
+COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
+
 # Copy data directory contents to /var/www/html
 COPY ./data /var/www/html/
 
