@@ -1,11 +1,11 @@
 <?php
 error_reporting(0);
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
-require 'mail/vendor/autoload.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 $response = ['success' => false, 'message' => '', 'debug' => ''];
@@ -20,7 +20,7 @@ $mail->Debugoutput = function($str, $level) use (&$debugOutput) {
 try {
     $mail->isSMTP();
     $mail->Host = $_POST['host'];
-    $mail->SMTPAuth = $_POST['SMTPAuth'];
+    $mail->SMTPAuth = true;
     $mail->Username = $_POST['username'];
     $mail->Password = $_POST['password'];
     $mail->SMTPSecure = $_POST['security'];
