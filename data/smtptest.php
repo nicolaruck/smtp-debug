@@ -3,7 +3,7 @@ error_reporting(0);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require 'mail/vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 $response = ['success' => false, 'message' => '', 'debug' => ''];
