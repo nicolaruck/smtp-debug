@@ -14,8 +14,6 @@ Dieses Projekt stellt ein Docker-Image zur Verfügung, das einen SMTP Debug Webs
 
 ### Weboberfläche
 Nach dem Start des Containers ist die Weboberfläche unter http://localhost erreichbar. Dort können die SMTP-Daten eingegeben und der Versand getestet werden.
-![image](https://github.com/nicolaruck/smtp-debug/assets/145778551/75819cbf-b9be-451e-822c-ce2bd9b907dc)
-![image](https://github.com/nicolaruck/smtp-debug/assets/145778551/a98652c1-9be0-4c27-a9e1-0830c6f9cd06)
 
 ## Demo
 https://smtp.my-c.ch
@@ -51,7 +49,10 @@ networks:
 volumes:
   v-smtp-debug:
 ```
-    
+## Screenshots
+![image](https://github.com/nicolaruck/smtp-debug/assets/145778551/75819cbf-b9be-451e-822c-ce2bd9b907dc)
+![image](https://github.com/nicolaruck/smtp-debug/assets/145778551/a98652c1-9be0-4c27-a9e1-0830c6f9cd06)
+
 ## Authors
 
 - [@nicolaruck](https://github.com/nicolaruck)
